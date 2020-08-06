@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const express = require("express");
 const app = express();
 // parse incoming string or array data
@@ -20,12 +22,15 @@ function filterByQuery(query, notesArray) {
     return filteredResults;
 }
 
-function createNote(body, notesArray) {
-  console.log(body);
-  // our function's main code will go here!
+function createNewNote(body, notesArray) {
+  const note = body;
+  notesArray.push(note);
+  fs.writeFileSync(
+    path.join(__dirname, './db/db.json'),
+    JSON.stringify({ notes: notesArray }, null, 2)
+  );
 
-  // return finished code to post route for response
-  return body;
+  return note;
 }
 
 app.get("/api/notes", (req, res) => {
@@ -40,6 +45,10 @@ app.post('/api/notes', (req, res) => {
   // set id based on what the next index of the array will be
   req.body.id = notes.length.toString();
   console.log(req.body);
+
+  // add note to json file and animals array in this function
+  const note = createNewNote(req.body, notes);
+
   res.json(req.body);
 });
 
