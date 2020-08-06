@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 const { notes } = require("./db/db.json")
+app.use(express.static('public'));
 
 function filterByQuery(query, notesArray) {
     let filteredResults = notesArray;
@@ -50,6 +51,10 @@ app.post('/api/notes', (req, res) => {
   const note = createNewNote(req.body, notes);
 
   res.json(req.body);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 const PORT = process.env.PORT || 3001;
