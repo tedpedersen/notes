@@ -20,6 +20,14 @@ function filterByQuery(query, notesArray) {
     return filteredResults;
 }
 
+function createNote(body, notesArray) {
+  console.log(body);
+  // our function's main code will go here!
+
+  // return finished code to post route for response
+  return body;
+}
+
 app.get("/api/notes", (req, res) => {
     let results = notes;
     if (req.query) {
@@ -29,6 +37,8 @@ app.get("/api/notes", (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
+  // set id based on what the next index of the array will be
+  req.body.id = notes.length.toString();
   console.log(req.body);
   res.json(req.body);
 });
