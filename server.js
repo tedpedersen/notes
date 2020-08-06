@@ -47,7 +47,7 @@ app.post('/api/notes', (req, res) => {
   req.body.id = notes.length.toString();
   console.log(req.body);
 
-  // add note to json file and animals array in this function
+  // add note to json file and note array in this function
   const note = createNewNote(req.body, notes);
 
   res.json(req.body);
