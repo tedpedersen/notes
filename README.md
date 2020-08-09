@@ -1,4 +1,7 @@
 # Notes App
+
+![Notes App Screenshot](https://raw.githubusercontent.com/tedpedersen/notes/master/public/assets/img/screencap.png)
+
 ### License:
 ![License](https://img.shields.io/badge/License-MIT-blue.svg "License Badge")
 
